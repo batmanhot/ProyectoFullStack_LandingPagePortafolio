@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* Section F del DOC-A — Paleta de color */
+  --color-bg: #0a0e1a;
+  --color-surface: #12172b;
+  --color-cta: #25d366;
+  --color-cta-hover: #1fb85a;
+  --color-accent: #5eead4;
+  --color-fg: #f8fafc;
+  /* #64748B (valor original del DOC-A) daba 3.7-4.05:1 contra los fondos de
+     la página, por debajo del mínimo WCAG AA de 4.5:1 (detectado con
+     Lighthouse). Ajustado a un tono más claro que sí cumple (5.2-5.7:1). */
+  --color-fg-muted: #7c8ca8;
+
+  /* Section F del DOC-A — Tipografía */
+  --font-heading: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
