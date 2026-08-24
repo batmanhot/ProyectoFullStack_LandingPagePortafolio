@@ -12,13 +12,21 @@ import { initAnalytics } from "./hooks/useAnalytics";
 // quedan en el bundle principal; el resto —incluyendo el propio
 // framer-motion, que solo usan estas secciones— carga en paralelo sin
 // bloquear el primer paint.
+const Problemas = lazy(() => import("./components/sections/Problemas"));
+const Metodologia = lazy(() => import("./components/sections/Metodologia"));
 const SobreMi = lazy(() => import("./components/sections/SobreMi"));
+const Experiencia = lazy(() => import("./components/sections/Experiencia"));
 const Proyectos = lazy(() => import("./components/sections/Proyectos"));
 const Stack = lazy(() => import("./components/sections/Stack"));
+const AIEngineering = lazy(() => import("./components/sections/AIEngineering"));
 const PruebaSocial = lazy(() => import("./components/sections/PruebaSocial"));
 const FAQ = lazy(() => import("./components/sections/FAQ"));
 
-// Orden exacto de la Sección B del DOC-A (arquitectura Híbrida, MVP).
+// Orden actualizado según la Sección 32 del spec V2 ("cada sección responde
+// una pregunta del visitante"): Hero (¿qué haces?) → Problemas (¿resuelves
+// algo como lo mío?) → Método (¿cómo trabajas?) → Sobre mí (¿por qué
+// confiar en ti?) → Experiencia → Casos de estudio (¿qué has construido?)
+// → Stack (¿con qué?) → IA (¿cómo trabajas hoy?) → Autoridad → FAQ → CTA.
 function App() {
   useEffect(() => {
     initAnalytics();
@@ -30,9 +38,13 @@ function App() {
       <main>
         <Hero />
         <Suspense fallback={null}>
+          <Problemas />
+          <Metodologia />
           <SobreMi />
+          <Experiencia />
           <Proyectos />
           <Stack />
+          <AIEngineering />
           <PruebaSocial />
           <FAQ />
         </Suspense>

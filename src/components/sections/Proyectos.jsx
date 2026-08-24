@@ -5,18 +5,23 @@ import Badge from "../ui/Badge";
 import Eyebrow from "../ui/Eyebrow";
 import { getScrollReveal } from "../../hooks/useScrollReveal";
 
-// SEC-03 — Proyectos Destacados. Los primeros 4 tienen Copy Directriz
-// literal de la Sección C del DOC-A. Los siguientes 3 son proyectos reales
-// aportados por el usuario después de publicado el DOC-A (confirmados como
-// sus trabajos más recientes) — mismo formato Problema/Solución/Resultado.
-// Con más proyectos por venir, se muestran los primeros 4 y el resto queda
-// tras "Ver más" para no alargar la sección indefinidamente.
+// SEC-03 — Proyectos / Casos de estudio. Los primeros 4 tienen Copy
+// Directriz literal de la Sección C del DOC-A. Los siguientes 3 son
+// proyectos reales aportados por el usuario después de publicado el DOC-A
+// (confirmados como sus trabajos más recientes) — mismo formato
+// Problema/Solución/Resultado. Con más proyectos por venir, se muestran los
+// primeros 4 y el resto queda tras "Ver más" para no alargar la sección
+// indefinidamente.
+// Categoría agregada por el spec V2 (Sección 10): reformula cada card como
+// mini caso de estudio sin llegar a páginas de detalle por proyecto
+// (decisión explícita del usuario — mantener el formato de card, más ágil).
 // CTA secundario "Ver más en GitHub" 🔴 pendiente (URL no confirmada en el
 // DOC-A) — se omite en vez de enlazar a una URL inventada.
 
 const PROJECTS = [
   {
     name: "StockPro",
+    category: "SaaS · Inventario · Multi-tenant",
     problem: "Gestión de stock sin trazabilidad entre bodegas.",
     solution:
       "Backend NestJS/Prisma con patrón Strangler Fig para migración gradual.",
@@ -25,6 +30,7 @@ const PROJECTS = [
   },
   {
     name: "FactuSaaS",
+    category: "SaaS · Facturación electrónica · SUNAT",
     problem: "Firma digital de comprobantes electrónicos.",
     solution:
       "Generación de certificados .pfx + colas con BullMQ/Redis.",
@@ -33,6 +39,7 @@ const PROJECTS = [
   },
   {
     name: "EduSaaS / EduPerú",
+    category: "SaaS · Educación · Multi-tenant",
     problem: "SaaS educativo multi-tenant K-12 con cumplimiento SIAGIE/RENIEC.",
     solution: "22 rutas protegidas, CRUD completo para 6 roles de usuario.",
     result: "Frontend completo entregado en 6 sprints.",
@@ -40,6 +47,7 @@ const PROJECTS = [
   },
   {
     name: "SDK Multitenant Mercado Pago",
+    category: "SDK · Pagos digitales · Multi-tenant",
     problem: "Integración de pagos digitales para múltiples tenants.",
     solution:
       "Autenticación JWT dual (API-Key + Bearer), panel Super Admin.",
@@ -48,6 +56,7 @@ const PROJECTS = [
   },
   {
     name: "POS Minimarket",
+    category: "SaaS · Punto de venta · Retail",
     problem: "Ventas, inventario y caja de un minimarket en sistemas separados.",
     solution:
       "SAAS de punto de venta con Fastify/PostgreSQL, auth JWT dual, panel Super Admin e integración directa con FactuSaaS para envío a SUNAT.",
@@ -56,6 +65,7 @@ const PROJECTS = [
   },
   {
     name: "Sistema de Encuestas",
+    category: "Plataforma · Encuestas · Full Stack",
     problem: "Necesidad de crear y distribuir encuestas online con resultados accesibles al instante.",
     solution:
       "Plataforma full-stack con NestJS/PostgreSQL, formularios validados con Zod y notificaciones por correo.",
@@ -64,6 +74,7 @@ const PROJECTS = [
   },
   {
     name: "Doña Nella",
+    category: "Plataforma · Pedidos · Delivery propio",
     problem: "Negocio de pedidos dependiente de apps de delivery de terceros y sus comisiones.",
     solution:
       "Plataforma propia de pedidos con NestJS/PostgreSQL e integración de WhatsApp API para notificaciones.",
@@ -84,7 +95,7 @@ export default function Proyectos() {
     <section id="proyectos" className="px-6 py-20">
       <div className="mx-auto max-w-5xl">
         <motion.div {...reveal}>
-          <Eyebrow icon="💼">Proyectos</Eyebrow>
+          <Eyebrow icon="💼">Casos de estudio</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
             Sistemas reales, no solo prototipos
           </h2>
@@ -101,9 +112,14 @@ export default function Proyectos() {
               {...getScrollReveal(index * 0.08)}
               className="flex flex-col gap-4 rounded-2xl border border-fg-muted/15 bg-surface p-6"
             >
-              <h3 className="font-heading text-xl font-semibold text-fg">
-                {project.name}
-              </h3>
+              <div>
+                <h3 className="font-heading text-xl font-semibold text-fg">
+                  {project.name}
+                </h3>
+                <p className="mt-1 text-xs uppercase tracking-wide text-accent/80">
+                  {project.category}
+                </p>
+              </div>
               <dl className="flex flex-col gap-2 text-sm">
                 <div>
                   <dt className="font-medium text-fg-muted">Problema</dt>

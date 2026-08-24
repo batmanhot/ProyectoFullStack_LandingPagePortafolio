@@ -1,22 +1,25 @@
-import { CheckCircle2 } from "lucide-react";
 import Button from "../ui/Button";
 import Eyebrow from "../ui/Eyebrow";
-import {
-  buildWhatsAppLink,
-  formatWhatsAppNumberDisplay,
-} from "../../lib/conversion/whatsapp";
+import { buildWhatsAppLink } from "../../lib/conversion/whatsapp";
 import { trackEvent } from "../../hooks/useAnalytics";
+import portraitPhoto from "../../assets/jhon-ponte.jpg";
 
-// SEC-01 — Hero. Copy Directriz de la Sección C del DOC-A, con el 3er bullet
-// reemplazado a pedido explícito del usuario (posicionamiento AI-First,
-// confirmado sobre las opciones propuestas — ya no es el copy original).
-// Foto profesional 🔴 pendiente (Sección F): placeholder de iniciales,
-// dibujado en CSS para no arriesgar el LCP con una imagen sin optimizar.
+// SEC-01 — Hero. Reposicionado a Software Solutions Architect (spec V2,
+// Sección 6): headline y CTA dual reemplazan el copy Full-Stack-first
+// original. Foto profesional (Sección 6.1 del spec V2): entre las dos fotos
+// de estudio aportadas por el usuario se eligió la de traje + brazos
+// cruzados (vs. la de camisa manga corta) por transmitir con más fuerza el
+// perfil "ejecutivo/consultivo" que pide el spec — el objetivo central de
+// esta reingeniería es elevar el posicionamiento a Software Solutions
+// Architect. object-fit + object-position recortan el retrato (784×980) al
+// círculo sin depender de una herramienta de edición de imágenes aparte.
 
-const BULLETS = [
-  "6+ sistemas SaaS completos construidos (backend + frontend)",
-  "Especialización en cumplimiento regulatorio peruano (SUNAT/SIAGIE)",
-  "Desarrollo AI-First: uso IA en cada etapa —del análisis de datos al código— sin perder control de calidad ni entendimiento del negocio.",
+const QUICK_PROOF = [
+  "10+ años de experiencia",
+  "6+ soluciones SaaS",
+  "Arquitectura + Full Stack",
+  "Sistemas empresariales",
+  "Perú / Remote",
 ];
 
 export default function Hero() {
@@ -25,40 +28,36 @@ export default function Hero() {
       id="hero"
       className="mx-auto flex max-w-3xl flex-col items-center gap-8 px-6 pb-16 pt-36 text-center"
     >
-      <Eyebrow icon="👋">¡Hola!</Eyebrow>
+      <Eyebrow icon="🏗️">Software Solutions Architect</Eyebrow>
 
       <div
-        className="flex h-28 w-28 items-center justify-center rounded-full border-2 border-accent/40 bg-surface font-heading text-3xl font-bold text-accent"
+        className="h-28 w-28 overflow-hidden rounded-full border-2 border-accent/40 bg-surface"
         style={{ aspectRatio: "1 / 1" }}
-        aria-hidden="true"
       >
-        JP
+        <img
+          src={portraitPhoto}
+          alt="Jhon Ponte Casafranca"
+          width={224}
+          height={224}
+          fetchPriority="high"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "50% 18%" }}
+        />
       </div>
 
       <h1 className="font-heading text-4xl font-extrabold leading-tight text-fg sm:text-5xl">
-        Software que funciona en producción, no solo en la demo.
+        Transformo problemas empresariales complejos en software que funciona
+        en producción.
       </h1>
 
       <p className="max-w-xl text-lg text-fg-muted">
-        Full Stack Developer y Analista de Negocios. Diseño y construyo
-        sistemas con reglas complejas —facturación SUNAT, logística
-        multi-tenant, pagos digitales— de principio a fin.
+        Diseño y construyo sistemas empresariales, plataformas SaaS y
+        soluciones digitales combinando análisis de negocio, arquitectura de
+        software y desarrollo Full Stack — con foco en cumplimiento
+        regulatorio peruano, pagos digitales y arquitectura multi-tenant.
       </p>
 
-      <ul className="flex flex-col gap-3 text-left">
-        {BULLETS.map((bullet) => (
-          <li key={bullet} className="flex items-start gap-3 text-fg">
-            <CheckCircle2
-              size={20}
-              className="mt-0.5 shrink-0 text-cta"
-              aria-hidden="true"
-            />
-            <span>{bullet}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-4 sm:flex-row">
         <Button
           href={buildWhatsAppLink()}
           target="_blank"
@@ -66,12 +65,30 @@ export default function Hero() {
           size="large"
           onClick={() => trackEvent("whatsapp_click", { location: "hero" })}
         >
-          Escríbeme por WhatsApp
+          Hablemos de tu proyecto →
         </Button>
-        <span className="text-sm text-fg-muted">
-          {formatWhatsAppNumberDisplay()}
-        </span>
+        <Button
+          href="#proyectos"
+          variant="secondary"
+          size="large"
+          onClick={() => trackEvent("view_projects_click", { location: "hero" })}
+        >
+          Ver proyectos
+        </Button>
       </div>
+
+      <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-fg-muted">
+        {QUICK_PROOF.map((item, index) => (
+          <li key={item} className="flex items-center gap-3">
+            {item}
+            {index < QUICK_PROOF.length - 1 && (
+              <span aria-hidden="true" className="text-accent/40">
+                ·
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

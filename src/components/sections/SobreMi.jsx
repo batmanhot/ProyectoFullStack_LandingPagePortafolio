@@ -2,11 +2,12 @@ import { motion } from "framer-motion";
 import Eyebrow from "../ui/Eyebrow";
 import { getScrollReveal } from "../../hooks/useScrollReveal";
 
-// SEC-02 — Sobre Mí. Sin Ficha CORE en el DOC-A: copy borrador siguiendo la
-// Guía de Tono (Sección J, fusión premium-inspirador). Primer párrafo
-// grounded en la cabecera oficial del CV del usuario. Solo prosa, sin
-// timeline (a pedido explícito) — los 4 proyectos SaaS y DevStudio Perú ya
-// están cubiertos en Proyectos (SEC-03) y Prueba Social (SEC-05).
+// SEC-02 — Sobre Mí. Reescrito según Sección 9 del spec V2: evita abrir con
+// "Profesional en Desarrollo de Sistemas de Información..." (instrucción
+// explícita) y usa la narrativa "empecé entendiendo problemas, no
+// construyendo software". Hechos reales sin cambios (cronología, sectores,
+// empresas); solo se reordenó el énfasis y se retiró "apasionado por la
+// tecnología" (cliché que el spec pide evitar en la Sección 33).
 
 export default function SobreMi() {
   const reveal = getScrollReveal();
@@ -18,11 +19,21 @@ export default function SobreMi() {
         <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
           Historia y propósito
         </h2>
-        <p className="mt-6 text-lg leading-relaxed text-fg-muted">
-          Profesional en el Desarrollo de Sistemas de Información, con más de
-          10 años de experiencia como Desarrollador, Analista de Sistemas,
-          Analista Funcional, y en Análisis de Procesos y Gestión de Base de
-          Datos, en los sectores minero, industrial, comercial y público.
+        <p className="mt-6 text-lg leading-relaxed text-fg">
+          No empecé construyendo software. Empecé entendiendo problemas.
+        </p>
+        <p className="mt-4 text-lg leading-relaxed text-fg-muted">
+          Antes de escribir una línea de código en producción, pasé años
+          resolviendo tickets de soporte, mapeando procesos y traduciendo
+          necesidades reales de negocio en requerimientos funcionales. Esa
+          base —no un bootcamp— es la que hoy uso para diseñar arquitectura
+          de software.
+        </p>
+        <p className="mt-4 text-lg leading-relaxed text-fg-muted">
+          Soy profesional en Desarrollo de Sistemas de Información, con más
+          de 10 años de experiencia entre desarrollo, análisis de sistemas,
+          análisis funcional y gestión de bases de datos, en los sectores
+          minero, industrial, comercial y público.
         </p>
         <p className="mt-4 text-lg leading-relaxed text-fg-muted">
           No construyo software para que se vea bien en una demo. Lo construyo
@@ -42,8 +53,8 @@ export default function SobreMi() {
           Desde 2020 superviso proyectos de software y base de datos en
           Sudamericana de Inversiones, y desde 2024 apliqué toda esa base a
           un stack full-stack moderno, construyendo los sistemas SaaS que ves
-          abajo. Apasionado por la tecnología y las soluciones prácticas,
-          trabajo bien en equipos dinámicos, con entrega de valor continuo.
+          abajo. Sigo con el mismo criterio de siempre: entender primero el
+          negocio, después decidir la arquitectura.
         </p>
       </motion.div>
     </section>

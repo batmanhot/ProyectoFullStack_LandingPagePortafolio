@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 import Eyebrow from "../ui/Eyebrow";
 import { getScrollReveal } from "../../hooks/useScrollReveal";
 
-// SEC-05 — Prueba Social (implícita). Sin Ficha CORE en el DOC-A: copy
+// SEC-05 — Autoridad / Proof of Work. Sin Ficha CORE en el DOC-A: copy
 // borrador, C-08 "contador de proyectos, sectores" (Sección D del DOC-A).
-// Cero testimonios reales (riesgo R-02) — se compensa con cifras verificables.
+// Cero testimonios reales (riesgo R-02) — el spec V2 (Sección 15) pide
+// nombrar esto explícitamente como "Proof of Work" en vez de simularlos.
 // Diferenciadores reubicados aquí desde Stack (SEC-04): temáticamente ambas
 // secciones son etapa "Confianza" del buyer journey (Sección E del DOC-A),
 // y no encajaban visualmente entre los iconos técnicos del stack.
@@ -39,8 +40,12 @@ export default function PruebaSocial() {
   return (
     <section id="prueba-social" className="bg-surface/40 px-6 py-16">
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-8">
-        <motion.div {...getScrollReveal()}>
-          <Eyebrow icon="📊">Resultados</Eyebrow>
+        <motion.div {...getScrollReveal()} className="text-center">
+          <Eyebrow icon="📊">Proof of Work</Eyebrow>
+          <p className="mx-auto mt-4 max-w-xl text-fg-muted">
+            Todavía no tengo testimonios de clientes publicados. La autoridad
+            viene de la evidencia: sistemas reales, en producción.
+          </p>
         </motion.div>
 
         <motion.div
