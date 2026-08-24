@@ -7,6 +7,10 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 // en formato visual. Sin fechas inventadas: los años exactos de Consorcio
 // Minero Horizonte no están confirmados, así que se muestra la duración
 // ("~12 años") en vez de un rango de calendario.
+// Contenedor externo alineado a max-w-5xl (antes max-w-3xl, Sección 25 del
+// spec V2.1 — consistencia de grid editorial entre secciones); el timeline
+// en sí se mantiene en una columna de lectura angosta (max-w-2xl) para no
+// alargar demasiado cada línea de texto.
 
 const TIMELINE = [
   {
@@ -37,37 +41,39 @@ export default function Experiencia() {
 
   return (
     <section id="experiencia" className="px-6 py-20">
-      <div className="mx-auto max-w-3xl">
-        <motion.div {...reveal}>
-          <Eyebrow icon="📈">Experiencia</Eyebrow>
-          <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
-            De soporte y operaciones a arquitectura y desarrollo de soluciones
-            empresariales.
-          </h2>
-        </motion.div>
+      <div className="mx-auto max-w-5xl">
+        <div className="max-w-2xl">
+          <motion.div {...reveal}>
+            <Eyebrow icon="📈">Experiencia</Eyebrow>
+            <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
+              De soporte y operaciones a arquitectura y desarrollo de
+              soluciones empresariales.
+            </h2>
+          </motion.div>
 
-        <ol className="mt-10 flex flex-col gap-8 border-l border-accent/20 pl-6">
-          {TIMELINE.map((item, index) => (
-            <motion.li
-              key={item.role}
-              {...getScrollReveal(index * 0.08)}
-              className="relative"
-            >
-              <span
-                aria-hidden="true"
-                className="absolute -left-[1.65rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-bg"
-              />
-              <p className="text-xs font-medium uppercase tracking-wide text-accent">
-                {item.period}
-              </p>
-              <h3 className="mt-1 font-heading text-lg font-semibold text-fg">
-                {item.role}
-              </h3>
-              <p className="text-sm font-medium text-fg-muted">{item.org}</p>
-              <p className="mt-2 text-sm text-fg-muted">{item.detail}</p>
-            </motion.li>
-          ))}
-        </ol>
+          <ol className="mt-10 flex flex-col gap-8 border-l border-accent/20 pl-6">
+            {TIMELINE.map((item, index) => (
+              <motion.li
+                key={item.role}
+                {...getScrollReveal(index * 0.08)}
+                className="relative"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-[1.65rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-bg"
+                />
+                <p className="text-xs font-medium uppercase tracking-wide text-accent">
+                  {item.period}
+                </p>
+                <h3 className="mt-1 font-heading text-lg font-semibold text-fg">
+                  {item.role}
+                </h3>
+                <p className="text-sm font-medium text-fg-muted">{item.org}</p>
+                <p className="mt-2 text-sm text-fg-muted">{item.detail}</p>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

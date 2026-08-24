@@ -9,6 +9,10 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 // Diferenciadores reubicados aquí desde Stack (SEC-04): temáticamente ambas
 // secciones son etapa "Confianza" del buyer journey (Sección E del DOC-A),
 // y no encajaban visualmente entre los iconos técnicos del stack.
+// Contenedor ampliado a max-w-5xl (antes max-w-4xl) para alinearse con el
+// resto de las secciones de cuerpo (Sección 25 del spec V2.1); el contenido
+// se mantiene centrado internamente (items-center) porque esta sección
+// funciona como banda de estadísticas, no como grid de lectura.
 
 const STATS = [
   { value: "10+", label: "Años de experiencia en sistemas y desarrollo" },
@@ -39,7 +43,7 @@ const DIFERENCIADORES = [
 export default function PruebaSocial() {
   return (
     <section id="prueba-social" className="bg-surface/40 px-6 py-16">
-      <div className="mx-auto flex max-w-4xl flex-col items-center gap-8">
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-8">
         <motion.div {...getScrollReveal()} className="text-center">
           <Eyebrow icon="📊">Proof of Work</Eyebrow>
           <p className="mx-auto mt-4 max-w-xl text-fg-muted">

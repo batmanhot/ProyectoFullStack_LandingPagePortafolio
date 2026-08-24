@@ -9,6 +9,10 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 // Ficha de Buyer Persona (Sección A del DOC-A). Sin precios ni plazos
 // inventados — cada respuesta se apoya en un proyecto real ya documentado
 // en Proyectos (SEC-03).
+// Contenedor externo alineado a max-w-5xl (antes max-w-2xl) para que el
+// título arranque en la misma línea que las secciones de arriba (Sección 25
+// del spec V2.1); el acordeón se mantiene en una columna angosta
+// (max-w-2xl) para que las preguntas no se estiren de más.
 
 const FAQS = [
   {
@@ -65,13 +69,15 @@ const FAQS = [
 export default function FAQ() {
   return (
     <section id="faq" className="px-6 py-20">
-      <motion.div {...getScrollReveal()} className="mx-auto max-w-2xl">
-        <Eyebrow icon="💬">FAQ</Eyebrow>
-        <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
-          Preguntas frecuentes
-        </h2>
-        <div className="mt-8">
-          <FAQAccordion items={FAQS} />
+      <motion.div {...getScrollReveal()} className="mx-auto max-w-5xl">
+        <div className="max-w-2xl">
+          <Eyebrow icon="💬">FAQ</Eyebrow>
+          <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
+            Preguntas frecuentes
+          </h2>
+          <div className="mt-8">
+            <FAQAccordion items={FAQS} />
+          </div>
         </div>
       </motion.div>
     </section>

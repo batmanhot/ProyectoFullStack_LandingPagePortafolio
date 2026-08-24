@@ -9,6 +9,8 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 // negocio (ahora Metodologia.jsx) del uso de IA en el flujo de desarrollo.
 // Contenido sin cambios respecto al original (confirmado por el usuario) —
 // solo se reubicó y se le dio positioning propio.
+// Contenedor ampliado a max-w-5xl (antes max-w-4xl) para alinearse con el
+// resto de las secciones de cuerpo (Sección 25 del spec V2.1).
 
 const AI_STACK = [
   { name: "GitHub Copilot", Icon: SiGithubcopilot },
@@ -56,7 +58,7 @@ export default function AIEngineering() {
 
   return (
     <section id="ai-engineering" className="px-6 py-20">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <motion.div {...reveal}>
           <Eyebrow icon="🤖">AI-Augmented Engineering</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">

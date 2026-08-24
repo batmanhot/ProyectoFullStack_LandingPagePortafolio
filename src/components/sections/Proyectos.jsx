@@ -1,39 +1,33 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import Badge from "../ui/Badge";
 import Eyebrow from "../ui/Eyebrow";
 import { getScrollReveal } from "../../hooks/useScrollReveal";
 
-// SEC-03 — Proyectos / Casos de estudio. Los primeros 4 tienen Copy
-// Directriz literal de la Sección C del DOC-A. Los siguientes 3 son
-// proyectos reales aportados por el usuario después de publicado el DOC-A
-// (confirmados como sus trabajos más recientes) — mismo formato
-// Problema/Solución/Resultado. Con más proyectos por venir, se muestran los
-// primeros 4 y el resto queda tras "Ver más" para no alargar la sección
-// indefinidamente.
-// Categoría agregada por el spec V2 (Sección 10): reformula cada card como
-// mini caso de estudio sin llegar a páginas de detalle por proyecto
-// (decisión explícita del usuario — mantener el formato de card, más ágil).
-// CTA secundario "Ver más en GitHub" 🔴 pendiente (URL no confirmada en el
-// DOC-A) — se omite en vez de enlazar a una URL inventada.
+// SEC-03 — Proyectos / Casos de estudio. Reestructurado según las Secciones
+// 16 y 19 del spec V2.1: composición editorial (1 caso principal grande + 2
+// destacados + secundarios en formato compacto) en vez del grid uniforme
+// anterior, donde las 7 cards pesaban visualmente igual. Mismo copy y mismos
+// datos reales que antes (Problema/Solución/Resultado, Sección 18 del spec);
+// solo cambia la jerarquía visual. Formato de card simple (sin "Desafío" ni
+// "Decisión arquitectónica" por card, y sin páginas de detalle por
+// proyecto) — decisión explícita del usuario reconfirmada para el V2.1.
 
-const PROJECTS = [
-  {
-    name: "StockPro",
-    category: "SaaS · Inventario · Multi-tenant",
-    problem: "Gestión de stock sin trazabilidad entre bodegas.",
-    solution:
-      "Backend NestJS/Prisma con patrón Strangler Fig para migración gradual.",
-    result: "108 tests unitarios + 17 smoke tests pasando.",
-    stack: ["NestJS", "Prisma", "Multi-tenant"],
-  },
+const PRINCIPAL = {
+  name: "StockPro",
+  category: "SaaS · Inventario · Multi-tenant",
+  problem: "Gestión de stock sin trazabilidad entre bodegas.",
+  solution:
+    "Backend NestJS/Prisma con patrón Strangler Fig para migración gradual sin detener la operación existente.",
+  result: "108 tests unitarios + 17 smoke tests pasando.",
+  stack: ["NestJS", "Prisma", "Multi-tenant"],
+};
+
+const DESTACADOS = [
   {
     name: "FactuSaaS",
     category: "SaaS · Facturación electrónica · SUNAT",
     problem: "Firma digital de comprobantes electrónicos.",
-    solution:
-      "Generación de certificados .pfx + colas con BullMQ/Redis.",
+    solution: "Generación de certificados .pfx + colas con BullMQ/Redis.",
     result: "Pipeline de facturación SUNAT-compliant funcional de punta a punta.",
     stack: ["BullMQ", "Redis", "SUNAT"],
   },
@@ -45,51 +39,86 @@ const PROJECTS = [
     result: "Frontend completo entregado en 6 sprints.",
     stack: ["Next.js", "RBAC", "SIAGIE"],
   },
+];
+
+// Secundarios: mismo contenido real que antes, condensado a una línea de
+// resultado en vez del trío Problema/Solución/Resultado completo — evita
+// que 4 proyectos más compitan visualmente con el principal y los 2
+// destacados de arriba.
+const SECUNDARIOS = [
   {
     name: "SDK Multitenant Mercado Pago",
     category: "SDK · Pagos digitales · Multi-tenant",
-    problem: "Integración de pagos digitales para múltiples tenants.",
-    solution:
-      "Autenticación JWT dual (API-Key + Bearer), panel Super Admin.",
     result: "4 fases completadas, listo para testing E2E.",
-    stack: ["JWT", "Mercado Pago", "Multi-tenant"],
+    stack: ["JWT", "Mercado Pago"],
   },
   {
     name: "POS Minimarket",
     category: "SaaS · Punto de venta · Retail",
-    problem: "Ventas, inventario y caja de un minimarket en sistemas separados.",
-    solution:
-      "SAAS de punto de venta con Fastify/PostgreSQL, auth JWT dual, panel Super Admin e integración directa con FactuSaaS para envío a SUNAT.",
-    result: "Sistema POS unificado que centraliza ventas, inventario y caja en una sola plataforma.",
-    stack: ["Node", "Fastify", "AWS", "React", "Tailwind", "TanStack", "Zod"],
+    result: "Sistema POS unificado: ventas, inventario y caja en una sola plataforma.",
+    stack: ["Fastify", "AWS"],
   },
   {
     name: "Sistema de Encuestas",
     category: "Plataforma · Encuestas · Full Stack",
-    problem: "Necesidad de crear y distribuir encuestas online con resultados accesibles al instante.",
-    solution:
-      "Plataforma full-stack con NestJS/PostgreSQL, formularios validados con Zod y notificaciones por correo.",
-    result: "Encuestas en línea para diversos objetivos, con resultados en tiempo real.",
-    stack: ["NestJS", "TanStack", "Zod"],
+    result: "Encuestas en línea con resultados accesibles en tiempo real.",
+    stack: ["NestJS", "Zod"],
   },
   {
     name: "Doña Nella",
     category: "Plataforma · Pedidos · Delivery propio",
-    problem: "Negocio de pedidos dependiente de apps de delivery de terceros y sus comisiones.",
-    solution:
-      "Plataforma propia de pedidos con NestJS/PostgreSQL e integración de WhatsApp API para notificaciones.",
-    result: "Pedidos y delivery propios 24/7, sin comisiones ni dependencia de terceros.",
-    stack: ["Node", "NestJS", "Firebase", "JWT"],
+    result: "Pedidos y delivery propios 24/7, sin comisiones de terceros.",
+    stack: ["NestJS", "WhatsApp API"],
   },
 ];
 
-const FEATURED_COUNT = 4;
+function CaseCard({ project, large = false, delay = 0 }) {
+  return (
+    <motion.article
+      {...getScrollReveal(delay)}
+      className={`flex flex-col gap-4 rounded-2xl border bg-surface ${
+        large
+          ? "border-accent/30 p-8 lg:p-10"
+          : "border-fg-muted/15 p-6"
+      }`}
+    >
+      <div>
+        <h3
+          className={`font-heading font-semibold text-fg ${
+            large ? "text-2xl sm:text-3xl" : "text-xl"
+          }`}
+        >
+          {project.name}
+        </h3>
+        <p className="mt-1 text-xs uppercase tracking-wide text-accent/80">
+          {project.category}
+        </p>
+      </div>
+      <dl className="flex flex-col gap-2 text-sm">
+        <div>
+          <dt className="font-medium text-fg-muted">Problema</dt>
+          <dd className="text-fg">{project.problem}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-fg-muted">Solución</dt>
+          <dd className="text-fg">{project.solution}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-fg-muted">Resultado</dt>
+          <dd className="text-fg">{project.result}</dd>
+        </div>
+      </dl>
+      <div className="mt-auto flex flex-wrap gap-2 pt-2">
+        {project.stack.map((tech) => (
+          <Badge key={tech}>{tech}</Badge>
+        ))}
+      </div>
+    </motion.article>
+  );
+}
 
 export default function Proyectos() {
   const reveal = getScrollReveal();
-  const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? PROJECTS : PROJECTS.slice(0, FEATURED_COUNT);
-  const hiddenCount = PROJECTS.length - FEATURED_COUNT;
 
   return (
     <section id="proyectos" className="px-6 py-20">
@@ -105,61 +134,44 @@ export default function Proyectos() {
           </p>
         </motion.div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {visibleProjects.map((project, index) => (
-            <motion.article
-              key={project.name}
-              {...getScrollReveal(index * 0.08)}
-              className="flex flex-col gap-4 rounded-2xl border border-fg-muted/15 bg-surface p-6"
-            >
-              <div>
-                <h3 className="font-heading text-xl font-semibold text-fg">
-                  {project.name}
-                </h3>
-                <p className="mt-1 text-xs uppercase tracking-wide text-accent/80">
-                  {project.category}
-                </p>
-              </div>
-              <dl className="flex flex-col gap-2 text-sm">
-                <div>
-                  <dt className="font-medium text-fg-muted">Problema</dt>
-                  <dd className="text-fg">{project.problem}</dd>
-                </div>
-                <div>
-                  <dt className="font-medium text-fg-muted">Solución</dt>
-                  <dd className="text-fg">{project.solution}</dd>
-                </div>
-                <div>
-                  <dt className="font-medium text-fg-muted">Resultado</dt>
-                  <dd className="text-fg">{project.result}</dd>
-                </div>
-              </dl>
-              <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                {project.stack.map((tech) => (
-                  <Badge key={tech}>{tech}</Badge>
-                ))}
-              </div>
-            </motion.article>
-          ))}
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <CaseCard project={PRINCIPAL} large />
+          <div className="flex flex-col gap-6">
+            {DESTACADOS.map((project, index) => (
+              <CaseCard key={project.name} project={project} delay={index * 0.08} />
+            ))}
+          </div>
         </div>
 
-        {hiddenCount > 0 && (
-          <div className="mt-8 flex justify-center">
-            <button
-              type="button"
-              onClick={() => setShowAll((v) => !v)}
-              aria-expanded={showAll}
-              className="flex items-center gap-2 rounded-full border border-accent/30 px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:bg-accent/10"
-            >
-              {showAll ? "Ver menos" : `Ver ${hiddenCount} proyectos más`}
-              <ChevronDown
-                size={18}
-                aria-hidden="true"
-                className={`transition-transform duration-200 ${showAll ? "rotate-180" : ""}`}
-              />
-            </button>
+        <div className="mt-12">
+          <p className="text-xs uppercase tracking-wide text-fg-muted">
+            Otros proyectos
+          </p>
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {SECUNDARIOS.map((project, index) => (
+              <motion.div
+                key={project.name}
+                {...getScrollReveal(index * 0.05)}
+                className="flex flex-col gap-2 rounded-xl border border-fg-muted/10 bg-surface/60 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+              >
+                <div>
+                  <p className="font-heading text-sm font-semibold text-fg">
+                    {project.name}
+                  </p>
+                  <p className="text-xs text-fg-muted">{project.category}</p>
+                  <p className="mt-1 text-xs text-fg-muted sm:hidden">
+                    {project.result}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.stack.map((tech) => (
+                    <Badge key={tech}>{tech}</Badge>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

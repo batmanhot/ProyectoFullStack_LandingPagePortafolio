@@ -20,12 +20,17 @@ import { trackEvent } from "../../hooks/useAnalytics";
 // hacer scroll manual. Se unifica el breakpoint a md y se agrega el botón
 // de hamburguesa + panel desplegable para todo lo que quede por debajo.
 
+// Sección 36 del spec V2.1: Inicio / Problemas / Método / Proyectos / Sobre
+// mí / Contacto — 6 ítems, sin exceso de opciones. Reemplaza el listado
+// anterior (que omitía Problemas y Contacto, e incluía FAQ) para alinearse
+// al recorrido de conversión que pide el spec.
 const NAV_LINKS = [
   { href: "#hero", label: "Inicio" },
-  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#problemas", label: "Problemas" },
+  { href: "#metodologia", label: "Método" },
   { href: "#proyectos", label: "Proyectos" },
-  { href: "#metodologia", label: "Metodología" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#cta-final", label: "Contacto" },
 ];
 
 export default function Header() {

@@ -14,11 +14,14 @@ import portraitPhoto from "../../assets/jhon-ponte.jpg";
 // Architect. object-fit + object-position recortan el retrato (784×980) al
 // círculo sin depender de una herramienta de edición de imágenes aparte.
 
+// Sección 9 del spec V2.1: reemplaza "Sistemas empresariales" (redundante
+// con el headline) por "Integraciones y automatización", indicador de
+// autoridad que el spec pide explícitamente y que antes no aparecía aquí.
 const QUICK_PROOF = [
   "10+ años de experiencia",
   "6+ soluciones SaaS",
   "Arquitectura + Full Stack",
-  "Sistemas empresariales",
+  "Integraciones y automatización",
   "Perú / Remote",
 ];
 

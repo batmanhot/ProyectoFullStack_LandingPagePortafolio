@@ -26,6 +26,8 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 // plana) y se retira el proceso "Cómo trabajo" (AI-First), que ahora vive
 // en su propia sección (AIEngineering.jsx) — el spec separa la metodología
 // de negocio del uso de IA. Tecnologías sin cambios respecto al original.
+// Contenedor ampliado a max-w-5xl (antes max-w-4xl) para alinearse con el
+// resto de las secciones de cuerpo (Sección 25 del spec V2.1).
 
 const STACK_GROUPS = [
   {
@@ -139,7 +141,7 @@ export default function Stack() {
 
   return (
     <section id="stack" className="px-6 py-20">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <motion.div {...reveal}>
           <Eyebrow icon="🛠️">Stack</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
