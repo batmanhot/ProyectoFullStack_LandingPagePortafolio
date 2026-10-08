@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Button from "../ui/Button";
-import { buildWhatsAppLink } from "../../lib/conversion/whatsapp";
+import { buildDiagnosticWhatsAppLink } from "../../lib/conversion/whatsapp";
 import { trackEvent } from "../../hooks/useAnalytics";
 
 // Header en pastilla flotante — patrón tomado de henriquesousadev.vercel.app
@@ -74,13 +74,13 @@ export default function Header() {
 
           <div className="hidden md:block">
             <Button
-              href={buildWhatsAppLink()}
+              href={buildDiagnosticWhatsAppLink("header")}
               target="_blank"
               rel="noopener noreferrer"
               size="small"
               onClick={() => trackEvent("whatsapp_click", { location: "header" })}
             >
-              Escríbeme
+              Solicitar diagnóstico
             </Button>
           </div>
 
@@ -115,7 +115,7 @@ export default function Header() {
               </a>
             ))}
             <Button
-              href={buildWhatsAppLink()}
+              href={buildDiagnosticWhatsAppLink("header_mobile")}
               target="_blank"
               rel="noopener noreferrer"
               size="default"
@@ -125,7 +125,7 @@ export default function Header() {
                 trackEvent("whatsapp_click", { location: "header_mobile" });
               }}
             >
-              Escríbeme
+              Solicitar diagnóstico
             </Button>
           </nav>
         )}

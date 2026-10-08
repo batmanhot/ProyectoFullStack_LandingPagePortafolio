@@ -36,6 +36,18 @@
     font-family: var(--font-heading);
   }
 
+  /* El foco debe ser inequívoco al navegar con teclado; el hover por sí solo
+     no ofrece esa señal a usuarios que no usan mouse. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 32%, transparent);
+    color: var(--color-fg);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

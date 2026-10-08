@@ -1,6 +1,6 @@
 import Button from "../ui/Button";
 import Eyebrow from "../ui/Eyebrow";
-import { buildWhatsAppLink } from "../../lib/conversion/whatsapp";
+import { buildDiagnosticWhatsAppLink } from "../../lib/conversion/whatsapp";
 import { trackEvent } from "../../hooks/useAnalytics";
 import portraitPhoto from "../../assets/jhon-ponte.jpg";
 
@@ -20,8 +20,8 @@ import portraitPhoto from "../../assets/jhon-ponte.jpg";
 const QUICK_PROOF = [
   "10+ años de experiencia",
   "6+ soluciones SaaS",
-  "Arquitectura + Full Stack",
-  "Integraciones y automatización",
+  "Arquitectura + desarrollo Full Stack",
+  "SUNAT, pagos e integraciones",
   "Perú / Remote",
 ];
 
@@ -34,7 +34,7 @@ export default function Hero() {
       <Eyebrow icon="🏗️">Software Solutions Architect</Eyebrow>
 
       <div
-        className="h-28 w-28 overflow-hidden rounded-full border-2 border-accent/40 bg-surface"
+        className="h-32 w-32 overflow-hidden rounded-full border-2 border-accent/40 bg-surface"
         style={{ aspectRatio: "1 / 1" }}
       >
         <img
@@ -44,31 +44,31 @@ export default function Hero() {
           height={224}
           fetchPriority="high"
           className="h-full w-full object-cover"
-          style={{ objectPosition: "50% 18%" }}
+          style={{ objectPosition: "50% 14%" }}
         />
       </div>
 
       <h1 className="font-heading text-4xl font-extrabold leading-tight text-fg sm:text-5xl">
-        Transformo problemas empresariales complejos en software que funciona
-        en producción.
+        Convierto procesos empresariales complejos en software confiable y
+        escalable.
       </h1>
 
       <p className="max-w-xl text-lg text-fg-muted">
-        Diseño y construyo sistemas empresariales, plataformas SaaS y
-        soluciones digitales combinando análisis de negocio, arquitectura de
-        software y desarrollo Full Stack — con foco en cumplimiento
-        regulatorio peruano, pagos digitales y arquitectura multi-tenant.
+        Ayudo a empresas peruanas que necesitan automatizar operaciones,
+        integrar SUNAT o pagos, y reemplazar procesos manuales por sistemas a
+        medida. Combino análisis de negocio, arquitectura y desarrollo Full
+        Stack para llevar la solución a producción.
       </p>
 
       <div className="flex flex-col items-center gap-4 sm:flex-row">
         <Button
-          href={buildWhatsAppLink()}
+          href={buildDiagnosticWhatsAppLink("hero")}
           target="_blank"
           rel="noopener noreferrer"
           size="large"
-          onClick={() => trackEvent("whatsapp_click", { location: "hero" })}
+          onClick={() => trackEvent("whatsapp_click", { location: "hero", intent: "diagnostic" })}
         >
-          Hablemos de tu proyecto →
+          Solicitar diagnóstico inicial →
         </Button>
         <Button
           href="#proyectos"
@@ -76,9 +76,14 @@ export default function Hero() {
           size="large"
           onClick={() => trackEvent("view_projects_click", { location: "hero" })}
         >
-          Ver proyectos
+          Ver casos de estudio
         </Button>
       </div>
+
+      <p className="-mt-3 text-sm text-fg-muted">
+        Cuéntame tu proceso y problema actual; así podremos definir el mejor
+        primer paso.
+      </p>
 
       <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-fg-muted">
         {QUICK_PROOF.map((item, index) => (

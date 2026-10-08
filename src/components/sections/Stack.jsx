@@ -88,7 +88,7 @@ const ARQUITECTURA = [
 const CERT_GROUPS = [
   {
     icon: "📋",
-    category: "Gestión de Procesos & Ágil",
+    category: "Procesos, Calidad y Agilidad",
     // Orden cronológico (más reciente primero), tal como lo definió el
     // usuario — reemplaza el orden anterior, que mezclaba las etapas.
     certs: [
@@ -104,7 +104,7 @@ const CERT_GROUPS = [
   },
   {
     icon: "💻",
-    category: "Desarrollo Web",
+    category: "Desarrollo de Software & IA Aplicada",
     // Orden cronológico (más reciente primero), tal como lo definió el
     // usuario — reemplaza el orden anterior, que mezclaba las etapas.
     certs: [
@@ -119,7 +119,7 @@ const CERT_GROUPS = [
   },
   {
     icon: "☁️",
-    category: "Datos & Cloud",
+    category: "Datos, Bases de Datos & Cloud",
     // Orden cronológico (más reciente primero). Oracle 21c, Big Data
     // Engineer/Architect y el diplomado BI de BSG Institute se movieron
     // aquí desde "Desarrollo Web" — encajan mejor temáticamente.
@@ -133,6 +133,29 @@ const CERT_GROUPS = [
       { name: "Big Data Engineer y Big Data Architect Professional", issuer: "Big Data Academy Perú", year: "Agosto 2020" },
       { name: "Diplomado Business Intelligence con SQL Server 2014", issuer: "BSG Institute", year: "Octubre 2016" },
     ],
+  },
+];
+
+// Son las credenciales más cercanas a la promesa comercial de la landing:
+// entender procesos, diseñar datos robustos y construir soluciones completas.
+const FEATURED_CERTS = [
+  {
+    name: "Analista de Procesos",
+    issuer: "WE Educación Ejecutiva",
+    year: "Septiembre 2022",
+    relevance: "Base para traducir operaciones reales en soluciones de software.",
+  },
+  {
+    name: "Administración y Desarrollo de Base de Datos Oracle 21c",
+    issuer: "CETI",
+    year: "Abril 2025",
+    relevance: "Respalda el criterio para diseñar y gestionar la capa de datos.",
+  },
+  {
+    name: "Desarrollo Web Full Stack con Python",
+    issuer: "TECSUP",
+    year: "Julio 2024",
+    relevance: "Refuerza la capacidad de construir soluciones de punta a punta.",
   },
 ];
 
@@ -185,6 +208,27 @@ export default function Stack() {
 
         <motion.div {...getScrollReveal(0.15)} className="mt-12">
           <h3 className="font-heading text-xl font-semibold text-fg">Certificaciones</h3>
+          <p className="mt-2 max-w-2xl text-sm text-fg-muted">
+            Credenciales seleccionadas por su relación directa con procesos,
+            datos y desarrollo de soluciones empresariales.
+          </p>
+          <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {FEATURED_CERTS.map((cert) => (
+              <article
+                key={cert.name}
+                className="rounded-2xl border border-accent/25 bg-surface p-5"
+              >
+                <p className="font-heading font-semibold text-fg">{cert.name}</p>
+                <p className="mt-2 text-sm text-accent">{cert.relevance}</p>
+                <p className="mt-3 text-xs text-fg-muted">
+                  {cert.issuer} · {cert.year}
+                </p>
+              </article>
+            ))}
+          </div>
+          <h4 className="mt-8 font-heading text-lg font-semibold text-fg">
+            Todas las certificaciones
+          </h4>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {CERT_GROUPS.map((group) => (
               <CertGroup key={group.category} {...group} />

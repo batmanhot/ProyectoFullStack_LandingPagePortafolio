@@ -18,7 +18,7 @@ const STATS = [
   { value: "10+", label: "Años de experiencia en sistemas y desarrollo" },
   { value: "6+", label: "Sistemas SaaS completos construidos" },
   { value: "4", label: "Sectores: logística, educación, pagos, minería" },
-  { value: "1", label: "Cliente-agencia verificable: DevStudio Perú" },
+  { value: "3", label: "Áreas clave: operación, cumplimiento e integraciones" },
 ];
 
 const DIFERENCIADORES = [
@@ -45,10 +45,12 @@ export default function PruebaSocial() {
     <section id="prueba-social" className="bg-surface/40 px-6 py-16">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-8">
         <motion.div {...getScrollReveal()} className="text-center">
-          <Eyebrow icon="📊">Proof of Work</Eyebrow>
+          <Eyebrow icon="📊">Evidencia de trabajo</Eyebrow>
           <p className="mx-auto mt-4 max-w-xl text-fg-muted">
-            Todavía no tengo testimonios de clientes publicados. La autoridad
-            viene de la evidencia: sistemas reales, en producción.
+            La confianza debe sostenerse en trabajo verificable: experiencia
+            acumulada, sistemas construidos, decisiones técnicas y evidencia
+            de calidad. Los casos publicados priorizan el contexto de negocio
+            sin exponer información confidencial.
           </p>
         </motion.div>
 
@@ -71,7 +73,7 @@ export default function PruebaSocial() {
 
         <motion.div {...getScrollReveal(0.1)} className="w-full">
           <h3 className="text-center font-heading text-xl font-semibold text-fg">
-            Por qué trabajar conmigo
+            Lo que cambia al trabajar conmigo
           </h3>
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {DIFERENCIADORES.map((item) => (

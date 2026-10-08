@@ -4,7 +4,7 @@ import Hero from "./components/sections/Hero";
 import CTAFinal from "./components/sections/CTAFinal";
 import Footer from "./components/sections/Footer";
 import WhatsAppFloat from "./components/ui/WhatsAppFloat";
-import { initAnalytics } from "./hooks/useAnalytics";
+import { initAnalytics, initScrollDepthTracking } from "./hooks/useAnalytics";
 
 // Code-splitting: 199 KiB de los 375 KiB del bundle no se usaban en la
 // carga inicial (detectado con Lighthouse mobile, LCP 3.2s > meta de 2.5s
@@ -30,6 +30,7 @@ const FAQ = lazy(() => import("./components/sections/FAQ"));
 function App() {
   useEffect(() => {
     initAnalytics();
+    return initScrollDepthTracking();
   }, []);
 
   return (
@@ -39,14 +40,14 @@ function App() {
         <Hero />
         <Suspense fallback={null}>
           <Problemas />
+          <Proyectos />
+          <PruebaSocial />
           <Metodologia />
           <SobreMi />
           <Experiencia />
-          <Proyectos />
+          <FAQ />
           <Stack />
           <AIEngineering />
-          <PruebaSocial />
-          <FAQ />
         </Suspense>
         <CTAFinal />
       </main>

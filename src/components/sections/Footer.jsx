@@ -64,7 +64,11 @@ export default function Footer() {
 
       <p className="mt-6">{formatWhatsAppNumberDisplay()}</p>
       <p className="mt-1">
-        <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-accent">
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          onClick={() => trackEvent("email_click", { location: "footer" })}
+          className="hover:text-accent"
+        >
           {CONTACT_EMAIL}
         </a>
       </p>

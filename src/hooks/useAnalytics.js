@@ -4,6 +4,8 @@
 
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 let initialized = false;
+let scrollListenerActive = false;
+let reachedMilestones = new Set();
 
 export function initAnalytics() {
   if (initialized || !GA_ID || typeof window === "undefined") return;
@@ -29,6 +31,42 @@ export function trackEvent(name, params = {}) {
   } else if (typeof window.plausible === "function") {
     window.plausible(name, { props: params });
   }
+}
+
+// Mide el interés por la narrativa completa del portfolio sin enviar eventos
+// continuos de scroll. Los hitos son comparables entre sesiones y cubren el
+// requisito de scroll depth sin añadir dependencias.
+export function initScrollDepthTracking() {
+  if (scrollListenerActive || typeof window === "undefined") return undefined;
+
+  scrollListenerActive = true;
+  const milestones = [25, 50, 75, 100];
+
+  const measureScrollDepth = () => {
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollableHeight = documentHeight - window.innerHeight;
+    const depth = scrollableHeight > 0
+      ? Math.min(100, Math.round(((window.scrollY + window.innerHeight) / documentHeight) * 100))
+      : 100;
+
+    milestones.forEach((milestone) => {
+      if (depth >= milestone && !reachedMilestones.has(milestone)) {
+        reachedMilestones.add(milestone);
+        trackEvent("scroll_depth", { percent_scrolled: milestone });
+      }
+    });
+  };
+
+  window.addEventListener("scroll", measureScrollDepth, { passive: true });
+  window.addEventListener("resize", measureScrollDepth, { passive: true });
+  measureScrollDepth();
+
+  return () => {
+    window.removeEventListener("scroll", measureScrollDepth);
+    window.removeEventListener("resize", measureScrollDepth);
+    scrollListenerActive = false;
+    reachedMilestones = new Set();
+  };
 }
 
 export function useAnalytics() {

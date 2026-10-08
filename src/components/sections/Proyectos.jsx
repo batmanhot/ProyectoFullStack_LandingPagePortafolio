@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import Badge from "../ui/Badge";
+import Button from "../ui/Button";
 import Eyebrow from "../ui/Eyebrow";
 import { getScrollReveal } from "../../hooks/useScrollReveal";
+import { buildDiagnosticWhatsAppLink } from "../../lib/conversion/whatsapp";
+import { trackEvent } from "../../hooks/useAnalytics";
 
 // SEC-03 — Proyectos / Casos de estudio. Reestructurado según las Secciones
 // 16 y 19 del spec V2.1: composición editorial (1 caso principal grande + 2
@@ -15,10 +18,11 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 const PRINCIPAL = {
   name: "StockPro",
   category: "SaaS · Inventario · Multi-tenant",
-  problem: "Gestión de stock sin trazabilidad entre bodegas.",
+  problem: "La operación de inventario necesitaba trazabilidad entre bodegas sin interrumpir el sistema existente.",
   solution:
-    "Backend NestJS/Prisma con patrón Strangler Fig para migración gradual sin detener la operación existente.",
-  result: "108 tests unitarios + 17 smoke tests pasando.",
+    "Backend NestJS/Prisma y migración gradual con patrón Strangler Fig, diseñado para convivir con la operación actual.",
+  impact: "Reduce el riesgo de una migración total y prepara la operación para crecer por etapas.",
+  result: "108 tests unitarios y 17 smoke tests como evidencia de calidad técnica.",
   stack: ["NestJS", "Prisma", "Multi-tenant"],
 };
 
@@ -26,16 +30,18 @@ const DESTACADOS = [
   {
     name: "FactuSaaS",
     category: "SaaS · Facturación electrónica · SUNAT",
-    problem: "Firma digital de comprobantes electrónicos.",
+    problem: "La facturación electrónica requería una emisión confiable y compatible con las reglas de SUNAT.",
     solution: "Generación de certificados .pfx + colas con BullMQ/Redis.",
-    result: "Pipeline de facturación SUNAT-compliant funcional de punta a punta.",
+    impact: "Automatiza un proceso crítico y evita depender de tareas manuales para emitir comprobantes.",
+    result: "Pipeline de facturación compatible con SUNAT, funcional de punta a punta.",
     stack: ["BullMQ", "Redis", "SUNAT"],
   },
   {
     name: "EduSaaS / EduPerú",
     category: "SaaS · Educación · Multi-tenant",
-    problem: "SaaS educativo multi-tenant K-12 con cumplimiento SIAGIE/RENIEC.",
-    solution: "22 rutas protegidas, CRUD completo para 6 roles de usuario.",
+    problem: "La gestión educativa necesitaba una plataforma multi-tenant con reglas de SIAGIE y RENIEC.",
+    solution: "22 rutas protegidas y CRUD completo para 6 roles de usuario.",
+    impact: "Centraliza procesos y permisos por institución dentro de una base preparada para múltiples clientes.",
     result: "Frontend completo entregado en 6 sprints.",
     stack: ["Next.js", "RBAC", "SIAGIE"],
   },
@@ -104,7 +110,11 @@ function CaseCard({ project, large = false, delay = 0 }) {
           <dd className="text-fg">{project.solution}</dd>
         </div>
         <div>
-          <dt className="font-medium text-fg-muted">Resultado</dt>
+          <dt className="font-medium text-fg-muted">Impacto para la operación</dt>
+          <dd className="text-fg">{project.impact}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-fg-muted">Evidencia</dt>
           <dd className="text-fg">{project.result}</dd>
         </div>
       </dl>
@@ -129,8 +139,8 @@ export default function Proyectos() {
             Sistemas reales, no solo prototipos
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-fg-muted">
-            Cada proyecto resuelve una regla de negocio que un template no
-            puede resolver.
+            Casos centrados en reglas de negocio, continuidad operativa y
+            calidad técnica; no solo en tecnología o pantallas.
           </p>
         </motion.div>
 
@@ -172,6 +182,29 @@ export default function Proyectos() {
             ))}
           </div>
         </div>
+
+        <motion.div
+          {...getScrollReveal(0.12)}
+          className="mt-12 flex flex-col items-start justify-between gap-5 rounded-2xl border border-accent/25 bg-surface p-6 sm:flex-row sm:items-center"
+        >
+          <div>
+            <h3 className="font-heading text-xl font-semibold text-fg">
+              ¿Tu operación se parece a alguno de estos casos?
+            </h3>
+            <p className="mt-2 max-w-2xl text-fg-muted">
+              Cuéntame el proceso, la integración o el sistema que hoy limita a
+              tu equipo. Revisaremos cuál debería ser el primer paso.
+            </p>
+          </div>
+          <Button
+            href={buildDiagnosticWhatsAppLink("cases")}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", { location: "cases", intent: "diagnostic" })}
+          >
+            Evaluar mi caso →
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

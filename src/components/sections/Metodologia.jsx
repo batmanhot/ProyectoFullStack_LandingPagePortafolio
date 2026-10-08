@@ -45,8 +45,13 @@ export default function Metodologia() {
         <motion.div {...reveal}>
           <Eyebrow icon="🧭">Cómo trabajo</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
-            No empiezo por el código. Empiezo por entender el problema.
+            Antes de construir, definimos qué problema vale la pena resolver.
           </h2>
+          <p className="mt-4 max-w-2xl text-lg text-fg-muted">
+            El diagnóstico inicial sirve para entender el proceso, las reglas,
+            los usuarios y las integraciones antes de comprometer tiempo e
+            inversión en desarrollo.
+          </p>
         </motion.div>
 
         <div className="mt-10 flex flex-col gap-4 lg:flex-row lg:items-stretch lg:gap-3">

@@ -1,7 +1,7 @@
 import Button from "../ui/Button";
 import Eyebrow from "../ui/Eyebrow";
 import {
-  buildWhatsAppLink,
+  buildDiagnosticWhatsAppLink,
   formatWhatsAppNumberDisplay,
 } from "../../lib/conversion/whatsapp";
 import { trackEvent } from "../../hooks/useAnalytics";
@@ -16,21 +16,22 @@ export default function CTAFinal() {
       <div className="mx-auto flex max-w-xl flex-col items-center gap-6">
         <Eyebrow icon="📩">Contacto</Eyebrow>
         <h2 className="font-heading text-3xl font-bold text-fg sm:text-4xl">
-          ¿Tienes un problema de software que necesita una solución real?
+          ¿Tu operación ya necesita una solución de software a medida?
         </h2>
         <p className="text-lg text-fg-muted">
-          Cuéntame qué quieres construir, mejorar o automatizar. Analicemos el
-          problema y definamos el camino técnico más adecuado.
+          Solicita un diagnóstico inicial. Cuéntame qué proceso quieres
+          construir, mejorar o automatizar y evaluaremos el camino técnico más
+          adecuado para tu negocio.
         </p>
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <Button
-            href={buildWhatsAppLink()}
+            href={buildDiagnosticWhatsAppLink("cta_final")}
             target="_blank"
             rel="noopener noreferrer"
             size="large"
             onClick={() => trackEvent("whatsapp_click", { location: "cta_final" })}
           >
-            Cuéntame qué necesitas construir →
+            Solicitar diagnóstico inicial →
           </Button>
           <Button
             href="#proyectos"
@@ -38,11 +39,11 @@ export default function CTAFinal() {
             size="large"
             onClick={() => trackEvent("view_projects_click", { location: "cta_final" })}
           >
-            Ver proyectos
+            Ver casos de estudio
           </Button>
         </div>
         <span className="text-sm text-fg-muted">
-          {formatWhatsAppNumberDisplay()}
+          WhatsApp directo: {formatWhatsAppNumberDisplay()}
         </span>
       </div>
     </section>

@@ -21,6 +21,11 @@ const FAQS = [
       "Sí. Desde el análisis del problema de negocio hasta arquitectura, desarrollo y despliegue — así construí cada uno de los sistemas SaaS que ves en Proyectos.",
   },
   {
+    question: "¿Qué tipo de empresa o proyecto encaja mejor?",
+    answer:
+      "Empresas que necesitan ordenar una operación, digitalizar un proceso, integrar servicios o construir un producto SaaS. El diagnóstico inicial permite validar si el problema requiere software a medida y definir el siguiente paso.",
+  },
+  {
     question: "¿Puedes trabajar sobre sistemas existentes?",
     answer:
       "Sí. En StockPro, por ejemplo, apliqué un patrón de migración progresiva (Strangler Fig) para modernizar sin detener la operación del negocio.",
@@ -62,7 +67,12 @@ const FAQS = [
   {
     question: "¿Cómo empezamos?",
     answer:
-      "Escríbeme por WhatsApp contándome qué necesitas. Te respondo directamente, sin formularios ni intermediarios.",
+      "Solicita el diagnóstico inicial por WhatsApp. Cuéntame la empresa, el proceso que quieres mejorar, el problema y el sistema actual si existe. Con ese contexto podremos evaluar el alcance con mayor claridad.",
+  },
+  {
+    question: "¿Cómo se definen el alcance, plazo e inversión?",
+    answer:
+      "Primero se entiende el problema, los usuarios, las integraciones y las reglas del negocio. Después se propone un alcance por etapas y una estimación acorde a la complejidad; no trabajo con cotizaciones genéricas sin contexto.",
   },
 ];
 

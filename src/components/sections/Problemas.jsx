@@ -9,38 +9,38 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 const PROBLEMAS = [
   {
     icon: "🏢",
-    title: "Sistemas empresariales",
-    detail: "Automatización de procesos y operaciones mediante software a medida.",
+    title: "Operaciones que dependen de Excel o tareas manuales",
+    detail: "Convierto procesos repetitivos, dispersos o difíciles de controlar en un sistema a medida.",
     evidence: "POS Minimarket",
   },
   {
     icon: "☁️",
-    title: "Plataformas SaaS",
-    detail: "Arquitecturas multi-tenant preparadas para crecer.",
+    title: "Productos SaaS que necesitan crecer sin rehacerse",
+    detail: "Diseño una base multi-tenant preparada para atender varias empresas o instituciones.",
     evidence: "EduSaaS, StockPro",
   },
   {
     icon: "🔗",
-    title: "Integraciones",
-    detail: "APIs, pagos, SUNAT, WhatsApp y servicios externos.",
+    title: "Sistemas que no conversan entre sí",
+    detail: "Integro APIs, pagos, SUNAT, WhatsApp y servicios externos para evitar doble trabajo.",
     evidence: "FactuSaaS, Mercado Pago",
   },
   {
     icon: "🔄",
-    title: "Modernización",
-    detail: "Migración progresiva de sistemas existentes sin detener la operación.",
+    title: "Software antiguo que frena al negocio",
+    detail: "Modernizo por etapas para mejorar el sistema sin detener la operación actual.",
     evidence: "StockPro (Strangler Fig)",
   },
   {
     icon: "⚙️",
-    title: "Automatización",
-    detail: "Transformación de procesos manuales en flujos digitales.",
+    title: "Procesos lentos con errores operativos",
+    detail: "Digitalizo flujos y reglas de negocio para dar trazabilidad y consistencia al equipo.",
     evidence: "Doña Nella",
   },
   {
     icon: "🚀",
-    title: "Productos digitales",
-    detail: "Desde MVP hasta plataformas listas para producción.",
+    title: "Una idea de producto que debe llegar a producción",
+    detail: "Defino la arquitectura y desarrollo el MVP o plataforma con criterio de evolución.",
     evidence: "Sistema de Encuestas",
   },
 ];
@@ -52,9 +52,10 @@ export default function Problemas() {
     <section id="problemas" className="px-6 py-20">
       <div className="mx-auto max-w-5xl">
         <motion.div {...reveal}>
-          <Eyebrow icon="🎯">Qué puedo resolver</Eyebrow>
+          <Eyebrow icon="🎯">Problemas que puedo resolver</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
-            ¿Qué tipo de problemas puedo ayudarte a resolver?
+            Software para los cuellos de botella que ya cuestan tiempo,
+            control o crecimiento.
           </h2>
         </motion.div>
 

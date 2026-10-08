@@ -4,10 +4,16 @@
 export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || "51951655295";
 
 export const DEFAULT_WHATSAPP_MESSAGE =
-  "Hola Jhon, vi tu portafolio y quiero contarte sobre...";
+  "Hola Jhon, quiero solicitar un diagnóstico inicial para un proyecto de software.\n\nEmpresa: \nProceso o área a mejorar: \nPrincipal problema: \nSistema actual (si existe): ";
 
 export function buildWhatsAppLink(message = DEFAULT_WHATSAPP_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+// Conserva el origen tanto en analítica como en el mensaje para poder
+// identificar qué punto de la landing genera cada conversación.
+export function buildDiagnosticWhatsAppLink(location) {
+  return buildWhatsAppLink(`${DEFAULT_WHATSAPP_MESSAGE}\n\nVi el botón: ${location}.`);
 }
 
 export function formatWhatsAppNumberDisplay(number = WHATSAPP_NUMBER) {
