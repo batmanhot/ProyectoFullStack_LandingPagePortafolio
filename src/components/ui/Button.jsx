@@ -12,7 +12,7 @@ const VARIANTS = {
 const SIZES = {
   small: "px-4 py-2 text-sm",
   default: "px-6 py-3 text-base",
-  large: "px-8 py-4 text-lg",
+  large: "px-6 py-3 text-base",
 };
 
 export default function Button({
@@ -26,7 +26,7 @@ export default function Button({
 }) {
   return (
     <Component
-      className={`inline-flex items-center justify-center gap-2 rounded-full transition-colors duration-200 ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full transition-colors duration-200 ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
       {...props}
     >
       {Icon ? <Icon size={20} aria-hidden="true" /> : null}

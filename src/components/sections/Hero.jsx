@@ -68,7 +68,7 @@ export default function Hero() {
           size="large"
           onClick={() => trackEvent("whatsapp_click", { location: "hero", intent: "diagnostic" })}
         >
-          Solicitar diagnóstico inicial →
+          Solicitar diagnóstico →
         </Button>
         <Button
           href="#proyectos"
@@ -76,7 +76,7 @@ export default function Hero() {
           size="large"
           onClick={() => trackEvent("view_projects_click", { location: "hero" })}
         >
-          Ver casos de estudio
+          Ver casos →
         </Button>
       </div>
 
