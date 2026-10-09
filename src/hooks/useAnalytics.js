@@ -69,6 +69,34 @@ export function initScrollDepthTracking() {
   };
 }
 
+// Registra una única visualización por sección durante la sesión. Solo se
+// envía el id público de la sección; no se captura texto, formularios ni datos
+// personales del visitante.
+export function initSectionViewTracking() {
+  if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+    return undefined;
+  }
+
+  const observedSections = document.querySelectorAll("main section[id]");
+  const viewedSections = new Set();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const section = entry.target.id;
+        if (!entry.isIntersecting || viewedSections.has(section)) return;
+
+        viewedSections.add(section);
+        trackEvent("portfolio_section_view", { section });
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.35 },
+  );
+
+  observedSections.forEach((section) => observer.observe(section));
+  return () => observer.disconnect();
+}
+
 export function useAnalytics() {
   return { trackEvent };
 }

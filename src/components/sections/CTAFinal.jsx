@@ -29,7 +29,7 @@ export default function CTAFinal() {
             target="_blank"
             rel="noopener noreferrer"
             size="large"
-            onClick={() => trackEvent("whatsapp_click", { location: "cta_final" })}
+            onClick={() => trackEvent("cta_whatsapp_click", { location: "cta_final" })}
           >
             Solicitar diagnóstico inicial →
           </Button>

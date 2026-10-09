@@ -10,7 +10,7 @@ const VARIANTS = {
 };
 
 const SIZES = {
-  small: "px-4 py-2 text-sm",
+  small: "h-11 px-4 text-sm",
   default: "px-6 py-3 text-base",
   large: "px-6 py-3 text-base",
 };

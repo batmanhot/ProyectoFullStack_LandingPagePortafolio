@@ -16,9 +16,11 @@ import { trackEvent } from "../../hooks/useAnalytics";
 // proyecto) — decisión explícita del usuario reconfirmada para el V2.1.
 
 const PRINCIPAL = {
+  id: "case-stockpro",
   name: "StockPro",
   category: "SaaS · Inventario · Multi-tenant",
   problem: "La operación de inventario necesitaba trazabilidad entre bodegas sin interrumpir el sistema existente.",
+  risk: "Una migración total podía comprometer la continuidad de una operación de inventario activa.",
   solution:
     "Backend NestJS/Prisma y migración gradual con patrón Strangler Fig, diseñado para convivir con la operación actual.",
   impact: "Reduce el riesgo de una migración total y prepara la operación para crecer por etapas.",
@@ -28,18 +30,22 @@ const PRINCIPAL = {
 
 const DESTACADOS = [
   {
+    id: "case-factusaas",
     name: "FactuSaaS",
     category: "SaaS · Facturación electrónica · SUNAT",
     problem: "La facturación electrónica requería una emisión confiable y compatible con las reglas de SUNAT.",
+    risk: "La emisión de comprobantes no podía depender de tareas manuales ni de flujos sin control.",
     solution: "Generación de certificados .pfx + colas con BullMQ/Redis.",
     impact: "Automatiza un proceso crítico y evita depender de tareas manuales para emitir comprobantes.",
     result: "Pipeline de facturación compatible con SUNAT, funcional de punta a punta.",
     stack: ["BullMQ", "Redis", "SUNAT"],
   },
   {
+    id: "case-edusaas",
     name: "EduSaaS / EduPerú",
     category: "SaaS · Educación · Multi-tenant",
     problem: "La gestión educativa necesitaba una plataforma multi-tenant con reglas de SIAGIE y RENIEC.",
+    risk: "Los permisos y reglas por institución debían mantenerse consistentes al crecer la plataforma.",
     solution: "22 rutas protegidas y CRUD completo para 6 roles de usuario.",
     impact: "Centraliza procesos y permisos por institución dentro de una base preparada para múltiples clientes.",
     result: "Frontend completo entregado en 6 sprints.",
@@ -82,6 +88,7 @@ function CaseCard({ project, large = false, delay = 0 }) {
   return (
     <motion.article
       {...getScrollReveal(delay)}
+      id={project.id}
       className={`flex flex-col gap-4 rounded-2xl border bg-surface ${
         large
           ? "border-accent/30 p-8 lg:p-10"
@@ -102,19 +109,23 @@ function CaseCard({ project, large = false, delay = 0 }) {
       </div>
       <dl className="flex flex-col gap-2 text-sm">
         <div>
-          <dt className="font-medium text-fg-muted">Problema</dt>
-          <dd className="text-fg">{project.problem}</dd>
-        </div>
-        <div>
-          <dt className="font-medium text-fg-muted">Solución</dt>
-          <dd className="text-fg">{project.solution}</dd>
-        </div>
-        <div>
-          <dt className="font-medium text-fg-muted">Impacto para la operación</dt>
+          <dt className="font-medium text-accent">Resultado para la operación</dt>
           <dd className="text-fg">{project.impact}</dd>
         </div>
         <div>
-          <dt className="font-medium text-fg-muted">Evidencia</dt>
+          <dt className="font-medium text-fg-muted">Contexto</dt>
+          <dd className="text-fg">{project.problem}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-fg-muted">Riesgo o fricción</dt>
+          <dd className="text-fg">{project.risk}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-fg-muted">Intervención</dt>
+          <dd className="text-fg">{project.solution}</dd>
+        </div>
+        <div>
+          <dt className="font-medium text-fg-muted">Evidencia técnica</dt>
           <dd className="text-fg">{project.result}</dd>
         </div>
       </dl>
@@ -200,7 +211,7 @@ export default function Proyectos() {
             href={buildDiagnosticWhatsAppLink("cases")}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent("whatsapp_click", { location: "cases", intent: "diagnostic" })}
+            onClick={() => trackEvent("cta_whatsapp_click", { location: "cases", intent: "diagnostic" })}
           >
             Evaluar mi caso →
           </Button>

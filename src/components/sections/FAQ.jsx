@@ -21,19 +21,9 @@ const FAQS = [
       "Sí. Desde el análisis del problema de negocio hasta arquitectura, desarrollo y despliegue — así construí cada uno de los sistemas SaaS que ves en Proyectos.",
   },
   {
-    question: "¿Qué tipo de empresa o proyecto encaja mejor?",
-    answer:
-      "Empresas que necesitan ordenar una operación, digitalizar un proceso, integrar servicios o construir un producto SaaS. El diagnóstico inicial permite validar si el problema requiere software a medida y definir el siguiente paso.",
-  },
-  {
     question: "¿Puedes trabajar sobre sistemas existentes?",
     answer:
       "Sí. En StockPro, por ejemplo, apliqué un patrón de migración progresiva (Strangler Fig) para modernizar sin detener la operación del negocio.",
-  },
-  {
-    question: "¿Desarrollas backend y frontend?",
-    answer:
-      "Sí, full stack completo: APIs, base de datos, arquitectura del lado del servidor y la interfaz final que usa el usuario.",
   },
   {
     question: "¿Puedes integrar servicios externos (pagos, SUNAT, WhatsApp)?",
@@ -41,24 +31,9 @@ const FAQS = [
       "Sí. Ya lo hice en producción: facturación electrónica SUNAT-compliant (FactuSaaS), pagos con Mercado Pago (SDK Multitenant) y notificaciones vía WhatsApp API (Doña Nella).",
   },
   {
-    question: "¿Trabajas con sistemas multi-tenant?",
-    answer:
-      "Sí, es una de mis especializaciones: StockPro, EduSaaS y el SDK de Mercado Pago están diseñados multi-tenant desde el inicio.",
-  },
-  {
     question: "¿Puedes ayudar a definir la arquitectura, no solo programar?",
     answer:
       "Sí. Antes de escribir código entiendo el problema y el negocio, y propongo la arquitectura y las decisiones técnicas — no solo ejecuto un ticket.",
-  },
-  {
-    question: "¿Cómo sé que esto va a funcionar en producción y no solo en la demo?",
-    answer:
-      "Porque el trabajo no termina en el mockup: cada sistema que construyo pasa por pruebas (unitarias y smoke tests) y se valida contra las reglas reales del negocio antes de considerarse listo.",
-  },
-  {
-    question: "¿Puedes integrarte al equipo y estándares de código de mi empresa?",
-    answer:
-      "Sí. He trabajado como refuerzo técnico dentro del stack de una agencia (DevStudio Perú) sin necesitar supervisión constante.",
   },
   {
     question: "¿Trabajas remoto?",
@@ -68,11 +43,6 @@ const FAQS = [
     question: "¿Cómo empezamos?",
     answer:
       "Solicita el diagnóstico inicial por WhatsApp. Cuéntame la empresa, el proceso que quieres mejorar, el problema y el sistema actual si existe. Con ese contexto podremos evaluar el alcance con mayor claridad.",
-  },
-  {
-    question: "¿Cómo se definen el alcance, plazo e inversión?",
-    answer:
-      "Primero se entiende el problema, los usuarios, las integraciones y las reglas del negocio. Después se propone un alcance por etapas y una estimación acorde a la complejidad; no trabajo con cotizaciones genéricas sin contexto.",
   },
 ];
 

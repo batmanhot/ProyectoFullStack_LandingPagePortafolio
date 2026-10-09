@@ -26,10 +26,10 @@ import { trackEvent } from "../../hooks/useAnalytics";
 // al recorrido de conversión que pide el spec.
 const NAV_LINKS = [
   { href: "#hero", label: "Inicio" },
-  { href: "#problemas", label: "Problemas" },
-  { href: "#metodologia", label: "Método" },
-  { href: "#proyectos", label: "Proyectos" },
-  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#problemas", label: "Especialidades" },
+  { href: "#proyectos", label: "Casos" },
+  { href: "#experiencia", label: "Experiencia" },
+  { href: "#stack", label: "Stack" },
   { href: "#cta-final", label: "Contacto" },
 ];
 
@@ -78,7 +78,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               size="small"
-              onClick={() => trackEvent("whatsapp_click", { location: "header" })}
+              onClick={() => trackEvent("cta_whatsapp_click", { location: "header" })}
             >
               Solicitar diagnóstico
             </Button>
@@ -89,7 +89,7 @@ export default function Header() {
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center text-fg md:hidden"
+            className="flex h-11 w-11 shrink-0 items-center justify-center text-fg md:hidden"
           >
             {mobileOpen ? (
               <X size={22} aria-hidden="true" />
@@ -109,7 +109,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-xl px-3 py-2.5 text-sm text-fg-muted transition-colors hover:bg-accent/10 hover:text-fg"
+                className="flex min-h-11 items-center rounded-xl px-3 py-2.5 text-sm text-fg-muted transition-colors hover:bg-accent/10 hover:text-fg"
               >
                 {link.label}
               </a>
@@ -122,7 +122,7 @@ export default function Header() {
               className="mt-2 w-full"
               onClick={() => {
                 setMobileOpen(false);
-                trackEvent("whatsapp_click", { location: "header_mobile" });
+                trackEvent("cta_whatsapp_click", { location: "header_mobile" });
               }}
             >
               Solicitar diagnóstico

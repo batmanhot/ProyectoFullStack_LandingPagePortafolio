@@ -11,7 +11,7 @@ export default function WhatsAppFloat() {
       href={buildDiagnosticWhatsAppLink("floating_cta")}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent("whatsapp_click", { location: "float" })}
+      onClick={() => trackEvent("cta_whatsapp_click", { location: "float" })}
       aria-label="Solicitar diagnóstico inicial por WhatsApp"
       className="fixed bottom-5 right-5 z-50 flex h-14 items-center justify-center gap-2 rounded-full bg-cta px-4 text-bg shadow-lg shadow-cta/30 transition-transform duration-200 hover:scale-105"
     >

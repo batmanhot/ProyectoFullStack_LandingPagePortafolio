@@ -53,9 +53,12 @@ export default function Footer() {
             rel="me noopener noreferrer"
             aria-label={label}
             onClick={() =>
-              trackEvent("social_click", { location: "footer", network: label.toLowerCase() })
+              trackEvent(
+                label === "LinkedIn" ? "linkedin_click" : "github_click",
+                { location: "footer" },
+              )
             }
-            className="text-fg-muted transition-colors hover:text-accent"
+            className="flex h-11 w-11 items-center justify-center text-fg-muted transition-colors hover:text-accent"
           >
             <Icon size={20} aria-hidden="true" />
           </a>

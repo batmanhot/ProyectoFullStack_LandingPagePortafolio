@@ -45,12 +45,14 @@ function IssuerLogo({ issuer }) {
 
 export default function CertGroup({ icon, category, certs }) {
   const [open, setOpen] = useState(false);
+  const panelId = `certifications-${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
   return (
     <div className="rounded-2xl border border-accent/15 bg-surface p-5">
       <button
         type="button"
         aria-expanded={open}
+        aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center justify-between gap-3 text-left"
       >
@@ -80,6 +82,10 @@ export default function CertGroup({ icon, category, certs }) {
           sin un max-height fijo que se rompa cada vez que se agreguen más
           certificaciones (como pasó con max-h-[40rem] y 8 certs). */}
       <div
+        id={panelId}
+        role="region"
+        aria-label={`Certificaciones de ${category}`}
+        aria-hidden={!open}
         className={`grid transition-[grid-template-rows] duration-200 ${
           open ? "mt-4 grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}

@@ -2,6 +2,7 @@ import Button from "../ui/Button";
 import Eyebrow from "../ui/Eyebrow";
 import { buildDiagnosticWhatsAppLink } from "../../lib/conversion/whatsapp";
 import { trackEvent } from "../../hooks/useAnalytics";
+import { LINKEDIN_URL } from "../../lib/conversion/social";
 import portraitPhoto from "../../assets/jhon-ponte.jpg";
 
 // SEC-01 — Hero. Reposicionado a Software Solutions Architect (spec V2,
@@ -33,13 +34,17 @@ export default function Hero() {
     >
       <Eyebrow icon="🏗️">Software Solutions Architect</Eyebrow>
 
+      <p className="-mb-4 font-heading text-lg font-semibold text-fg">
+        Jhon Ponte Casafranca
+      </p>
+
       <div
         className="h-32 w-32 overflow-hidden rounded-full border-2 border-accent/40 bg-surface"
         style={{ aspectRatio: "1 / 1" }}
       >
         <img
           src={portraitPhoto}
-          alt="Jhon Ponte Casafranca"
+          alt="Retrato profesional de Jhon Ponte Casafranca"
           width={224}
           height={224}
           fetchPriority="high"
@@ -66,7 +71,7 @@ export default function Hero() {
           target="_blank"
           rel="noopener noreferrer"
           size="large"
-          onClick={() => trackEvent("whatsapp_click", { location: "hero", intent: "diagnostic" })}
+          onClick={() => trackEvent("cta_whatsapp_click", { location: "hero", intent: "diagnostic" })}
         >
           Solicitar diagnóstico →
         </Button>
@@ -76,7 +81,7 @@ export default function Hero() {
           size="large"
           onClick={() => trackEvent("view_projects_click", { location: "hero" })}
         >
-          Ver casos →
+          Ver experiencia y casos →
         </Button>
       </div>
 
@@ -84,6 +89,16 @@ export default function Hero() {
         Cuéntame tu proceso y problema actual; así podremos definir el mejor
         primer paso.
       </p>
+
+      <a
+        href={LINKEDIN_URL}
+        target="_blank"
+        rel="me noopener noreferrer"
+        onClick={() => trackEvent("linkedin_click", { location: "hero" })}
+        className="-mt-3 text-sm text-accent underline-offset-4 hover:underline"
+      >
+        Ver perfil profesional en LinkedIn
+      </a>
 
       <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-fg-muted">
         {QUICK_PROOF.map((item, index) => (

@@ -20,7 +20,13 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 // (max-w-2xl) pero sin re-centrarlo, para que el borde izquierdo quede
 // alineado con las demás secciones.
 
-const EVOLUCION = ["Soporte", "Procesos", "Análisis", "Desarrollo", "Arquitectura"];
+const EVOLUCION = [
+  "Operación real",
+  "Procesos críticos",
+  "Análisis de negocio",
+  "Desarrollo Full Stack",
+  "Arquitectura escalable",
+];
 
 export default function SobreMi() {
   const reveal = getScrollReveal();
@@ -31,44 +37,30 @@ export default function SobreMi() {
         <div className="max-w-2xl">
           <Eyebrow icon="🧑">Sobre mí</Eyebrow>
           <h2 className="mt-4 font-heading text-3xl font-bold text-fg sm:text-4xl">
-            Historia y propósito
+            Del problema real a una solución que funciona en producción
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-fg">
-            No empecé construyendo software. Empecé entendiendo problemas.
+          <p className="mt-6 text-lg leading-relaxed text-fg-muted">
+            No diseño software desde una mirada teórica. Durante años estuve
+            donde los sistemas realmente se ponen a prueba: resolviendo
+            incidencias, escuchando a usuarios, mapeando procesos y entendiendo
+            qué ocurre cuando una operación depende de herramientas que no
+            responden.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-            Antes de escribir una línea de código en producción, pasé años
-            resolviendo tickets de soporte, mapeando procesos y traduciendo
-            necesidades reales de negocio en requerimientos funcionales. Esa
-            base —no un bootcamp— es la que hoy uso para diseñar arquitectura
-            de software.
+            Esa experiencia me permitió desarrollar una visión que va más allá
+            del código. Soy profesional en Desarrollo de Sistemas de
+            Información y tengo más de 10 años de experiencia en desarrollo,
+            análisis de sistemas, análisis funcional y gestión de bases de
+            datos, trabajando en sectores minero, industrial, comercial y
+            público.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-            Soy profesional en Desarrollo de Sistemas de Información, con más
-            de 10 años de experiencia entre desarrollo, análisis de sistemas,
-            análisis funcional y gestión de bases de datos, en los sectores
-            minero, industrial, comercial y público.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-            No construyo software para que se vea bien en una demo. Lo construyo
-            para que sobreviva a las reglas reales de un negocio: la regulación
-            que no perdona errores, los procesos que ya existen antes de que
-            llegue el código, y los usuarios que necesitan que el sistema
-            funcione el primer día de producción, no solo en la presentación.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-            Esa forma de pensar no es teoría: doce de esos años fueron en
-            Consorcio Minero Horizonte, donde no empecé como analista —empecé
-            resolviendo tickets de soporte al usuario final y fui creciendo
-            hasta liderar el análisis funcional y el desarrollo de los
-            sistemas.
-          </p>
-          <p className="mt-4 text-lg leading-relaxed text-fg-muted">
-            Desde 2020 superviso proyectos de software y base de datos en
-            Sudamericana de Inversiones, y desde 2024 apliqué toda esa base a
-            un stack full-stack moderno, construyendo los sistemas SaaS que ves
-            abajo. Sigo con el mismo criterio de siempre: entender primero el
-            negocio, después decidir la arquitectura.
+            Hoy convierto esa comprensión del negocio en soluciones de software
+            confiables y escalables. No se trata solo de crear una interfaz
+            atractiva o una demo funcional: se trata de diseñar sistemas que
+            respeten reglas reales, se integren con la operación existente y den
+            a los equipos la confianza de trabajar bien desde el primer día de
+            producción.
           </p>
 
           <div

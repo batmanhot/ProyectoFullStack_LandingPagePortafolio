@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Eyebrow from "../ui/Eyebrow";
 import { getScrollReveal } from "../../hooks/useScrollReveal";
+import { trackEvent } from "../../hooks/useAnalytics";
 
 // SEC-NEW — "¿Qué puedo resolver?" (Sección 7 del spec V2). No existía en
 // el DOC-A original. Cada bloque referencia un proyecto real de Proyectos
@@ -12,36 +13,42 @@ const PROBLEMAS = [
     title: "Operaciones que dependen de Excel o tareas manuales",
     detail: "Convierto procesos repetitivos, dispersos o difíciles de controlar en un sistema a medida.",
     evidence: "POS Minimarket",
+    caseId: "proyectos",
   },
   {
     icon: "☁️",
     title: "Productos SaaS que necesitan crecer sin rehacerse",
     detail: "Diseño una base multi-tenant preparada para atender varias empresas o instituciones.",
     evidence: "EduSaaS, StockPro",
+    caseId: "case-edusaas",
   },
   {
     icon: "🔗",
     title: "Sistemas que no conversan entre sí",
     detail: "Integro APIs, pagos, SUNAT, WhatsApp y servicios externos para evitar doble trabajo.",
     evidence: "FactuSaaS, Mercado Pago",
+    caseId: "case-factusaas",
   },
   {
     icon: "🔄",
     title: "Software antiguo que frena al negocio",
     detail: "Modernizo por etapas para mejorar el sistema sin detener la operación actual.",
     evidence: "StockPro (Strangler Fig)",
+    caseId: "case-stockpro",
   },
   {
     icon: "⚙️",
     title: "Procesos lentos con errores operativos",
     detail: "Digitalizo flujos y reglas de negocio para dar trazabilidad y consistencia al equipo.",
     evidence: "Doña Nella",
+    caseId: "proyectos",
   },
   {
     icon: "🚀",
     title: "Una idea de producto que debe llegar a producción",
     detail: "Defino la arquitectura y desarrollo el MVP o plataforma con criterio de evolución.",
     evidence: "Sistema de Encuestas",
+    caseId: "proyectos",
   },
 ];
 
@@ -61,10 +68,14 @@ export default function Problemas() {
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PROBLEMAS.map((item, index) => (
-            <motion.div
+            <motion.a
               key={item.title}
               {...getScrollReveal(index * 0.06)}
-              className="flex flex-col gap-3 rounded-2xl border border-fg-muted/15 bg-surface p-6"
+              href={`#${item.caseId}`}
+              onClick={() =>
+                trackEvent("case_study_open", { case_name: item.evidence })
+              }
+              className="flex flex-col gap-3 rounded-2xl border border-fg-muted/15 bg-surface p-6 transition-colors hover:border-accent/50 hover:bg-surface/80"
             >
               <span className="text-2xl" aria-hidden="true">
                 {item.icon}
@@ -76,7 +87,7 @@ export default function Problemas() {
               <p className="mt-auto text-xs uppercase tracking-wide text-accent/80">
                 Ej. {item.evidence}
               </p>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
