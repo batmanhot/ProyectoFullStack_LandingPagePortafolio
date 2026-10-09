@@ -14,7 +14,7 @@ const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "jhon@devstudioperu.
 
 const FOOTER_LINKS = [
   { href: "#hero", label: "Inicio" },
-  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#experiencia", label: "Trayectoria" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#cta-final", label: "Contacto" },
 ];

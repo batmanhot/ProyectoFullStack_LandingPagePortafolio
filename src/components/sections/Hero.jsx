@@ -19,7 +19,7 @@ import portraitPhoto from "../../assets/jhon-ponte.jpg";
 // con el headline) por "Integraciones y automatización", indicador de
 // autoridad que el spec pide explícitamente y que antes no aparecía aquí.
 const QUICK_PROOF = [
-  "10+ años de experiencia",
+  "17+ años de experiencia profesional",
   "6+ soluciones SaaS",
   "Arquitectura + desarrollo Full Stack",
   "SUNAT, pagos e integraciones",
@@ -81,7 +81,7 @@ export default function Hero() {
           size="large"
           onClick={() => trackEvent("view_projects_click", { location: "hero" })}
         >
-          Ver experiencia y casos →
+          Ver casos de estudio →
         </Button>
       </div>
 

@@ -15,7 +15,7 @@ import { getScrollReveal } from "../../hooks/useScrollReveal";
 // funciona como banda de estadísticas, no como grid de lectura.
 
 const STATS = [
-  { value: "10+", label: "Años de experiencia en sistemas y desarrollo" },
+  { value: "17+", label: "Años de experiencia profesional" },
   { value: "6+", label: "Sistemas SaaS completos construidos" },
   { value: "4", label: "Sectores: logística, educación, pagos, minería" },
   { value: "3", label: "Áreas clave: operación, cumplimiento e integraciones" },
